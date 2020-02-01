@@ -3,3 +3,6 @@
 flask
 Flask-WTF
 wtforms
+bs4
+beautifulsoup4
+lxml
