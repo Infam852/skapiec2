@@ -1,7 +1,5 @@
 from flask import Flask, render_template, url_for, flash, redirect, request
-from flask_sqlalchemy import SQLAlchemy
 from forms import ProductForm
-from scraper2 import *
 from main import *
 
 app = Flask(__name__)
