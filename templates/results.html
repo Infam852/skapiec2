@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="ml-auto mr-2 border-bottom mb-2">
+        <div class="row mb-2 ml-3">
+            <a class="btn btn-secondary" href="{{ url_for('home') }}" role="button">Wróć</a>
+            <a class="btn btn-success ml-2" href="{{ url_for('new_search') }}" role="button">Wyszukaj ponownie</a>
+        </div>
+
+    </div>
+    {% for product in results %}
+    <div class="content-section mt-2">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+                <th scope="col">Nazwa</th>
+                <th scope="col">Ilość sztuk</th>
+                <th scope="col">Cena za sztukę</th>
+                <th scope="col">Cena z dostawą</th>
+                <th scope="col">Cena sumaryczna</th>
+                <th scope="col">Sklep</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for offer in product %}
+            {% if offer is none %}
+            <tr>
+                <td colspan="6" class="text-center">Brak oferty</td>
+            </tr>
+            {% else %}
+
+            <tr onclick="window.location='{{ offer.link }}';" style="cursor: pointer;">
+                <div class="row">
+                    <td class="col-6">{{ offer.name }}</td>
+                    <td class="col-1">{{ counts[loop.index0] }}</td>
+                    <td class="col-1">{{ offer.price }}</td>
+                    <td class="col-1">{{ (offer.total_min_price) }}</td>
+                    <td class="col-1">{{ "%.2f"|format(offer.price * counts[loop.index0] + offer.min_delivery)}}</td>
+                    <td class="col-2">{{ offer.shop_name }}</td>
+                </div>
+            </tr>
+            {% endif %}
+          {% endfor %}
+          </tbody>
+        </table>
+    </div>
+    {% endfor %}
+{% endblock content %}

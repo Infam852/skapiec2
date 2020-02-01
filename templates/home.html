@@ -1,0 +1,133 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-7 content-section">
+    <div class="form-wrapper">
+        <form action="" method="post">
+        {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Wprowadź produkt, który chcesz wyszukać</legend>
+            <div class="form-group">
+                {{ form.name.label(class="form-control-label") }}
+
+                {% if form.name.errors %}
+                  {{ form.name(class="form-control form-control-lg is-invalid") }}
+                  <div class="invalid-feedback">
+                    {% for error in form.name.errors %}
+                      <span>{{ error }}</span>
+                    {% endfor %}
+                  </div>
+                {% else %}
+                  {{ form.name(class="form-control form-control-lg") }}
+                {% endif %}
+
+            </div>
+            <div class="form-group">
+                {{ form.min_price.label(class="form-control-label") }}
+
+                {% if form.min_price.errors %}
+                  {{ form.min_price(class="form-control form-control-lg is-invalid") }}
+                  <div class="invalid-feedback">
+                    {% for error in form.min_price.errors %}
+                      <span>{{ error }}</span>
+                    {% endfor %}
+                  </div>
+                {% else %}
+                  {{ form.min_price(class="form-control form-control-lg") }}
+                {% endif %}
+
+            </div>
+            <div class="form-group">
+                {{ form.max_price.label(class="form-control-label") }}
+
+                {% if form.max_price.errors %}
+                  {{ form.max_price(class="form-control form-control-lg is-invalid") }}
+                  <div class="invalid-feedback">
+                    {% for error in form.max_price.errors %}
+                      <span>{{ error }}</span>
+                    {% endfor %}
+                  </div>
+                {% else %}
+                  {{ form.max_price(class="form-control form-control-lg") }}
+                {% endif %}
+
+            </div>
+            <div class="form-group">
+                {{ form.count.label(class="form-control-label") }}
+
+                {% if form.count.errors %}
+                  {{ form.count(class="form-control form-control-lg is-invalid") }}
+                  <div class="invalid-feedback">
+                    {% for error in form.count.errors %}
+                      <span>{{ error }}</span>
+                    {% endfor %}
+                  </div>
+                {% else %}
+                  {{ form.count(class="form-control form-control-lg") }}
+                {% endif %}
+
+            </div>
+            <div class="form-group">
+                {{ form.min_rating.label(class="form-control-label") }}
+
+                {% if form.min_rating.errors %}
+                  {{ form.min_rating(class="form-control form-control-lg is-invalid") }}
+                  <div class="invalid-feedback">
+                    {% for error in form.min_rating.errors %}
+                      <span>{{ error }}</span>
+                    {% endfor %}
+                  </div>
+                {% else %}
+                  {{ form.min_rating(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+            {{ form.nrates.label(class="form-control-label") }}
+
+            {% if form.nrates.errors %}
+              {{ form.nrates(class="form-control form-control-lg is-invalid") }}
+              <div class="invalid-feedback">
+                {% for error in form.nrates.errors %}
+                  <span>{{ error }}</span>
+                {% endfor %}
+              </div>
+            {% else %}
+              {{ form.nrates(class="form-control form-control-lg") }}
+            {% endif %}
+            </div>
+            </fieldset>
+
+            <div class="form-group text-center">
+                {{ form.submit_add(class="btn btn-outline-info col-4") }}
+            </div>
+
+        </form>
+    </div>
+      <!-- przcisk wyszukaj poza formą, aby walidacja danych nie była przeprwadzana -->
+      <div class="form-group text-center">
+          <form action="/search" method="post">
+            <button type="submit" name="search_btn" value="s1" class="btn btn-outline-info col-4">Szukaj</button>
+          </form>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <h2>Lista dodanych przedmiotów</h2>
+      <ul class="list-group">
+        {% for product in products %}
+          <li class="list-group-item">
+            <div class="d-flex w-100 justify-content-between">
+              <h4>{{ product.name }}</h4>
+            </div>
+
+            <p class="mb-1">Zakres cen: {{ product.min_price }}-{{ product.max_price }} zł</p>
+            <p class="mb-1">Ilość: {{ product.count }}</p>
+            <p class="mb-1">Minimalna ocena: {{ product.min_rating }}</p>
+          </li>
+        {% endfor %}
+      </ul>
+
+    </div>
+    </div>
+{% endblock content %}
