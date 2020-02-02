@@ -33,8 +33,8 @@
                 <div class="row">
                     <td class="col-6">{{ offer.name }}</td>
                     <td class="col-1">{{ counts[loop.index0] }}</td>
-                    <td class="col-1">{{ offer.price }}</td>
-                    <td class="col-1">{{ (offer.total_min_price) }}</td>
+                    <td class="col-1">{{ "%.2f"|format(offer.price) }}</td>
+                    <td class="col-1">{{ "%.2f"|format(offer.total_min_price) }}</td>
                     <td class="col-1">{{ "%.2f"|format(offer.price * counts[loop.index0] + offer.min_delivery)}}</td>
                     <td class="col-2">{{ offer.shop_name }}</td>
                 </div>

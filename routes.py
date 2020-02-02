@@ -50,6 +50,15 @@ def search():
     return render_template('results.html', results=results, counts=counts)       # render results template
 
 
+@app.route('/delete/<int:pid>', methods=['GET', 'POST'])
+def delete_product(pid):
+    if so.remove_product(pid):
+        flash('Produkt został wycofany', 'success')
+    else:
+        flash('Wystąpił błąd', 'danger')
+    return redirect(url_for('home'))
+
+
 def result_reformat(results):
     results_ = []
     for offers in results:

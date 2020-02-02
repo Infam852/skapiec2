@@ -12,6 +12,7 @@ class SkapiecOptimazer:
         self.scrap_threads = []
         self.scraper = SkapiecScraper()
         self.in_products = []   # list of user requirements
+        self.req_id = 1
 
     def clear_products(self):
         self.in_products = []
@@ -32,9 +33,25 @@ class SkapiecOptimazer:
             return False
         # user_req = {'name': name, 'min_price': min_price, 'max_price': max_price, 'count': count,
         #             'min_rating': min_rating, 'nrates': nrates, 'found_products': None}
-        user_req = UserRequirements(name, count, min_price, max_price, min_rating, nrates)
+        user_req = UserRequirements(self.req_id, name, count, min_price, max_price, min_rating, nrates)
+        self.req_id += 1
         self.in_products.append(user_req)
         return True
+
+    def remove_product(self, pid):
+        """
+        Remove product from user's basket
+        :param pid:     (int)       : user requirements (aka product) id
+        :return:        (boolean)   : True if given id was found in a list
+        """
+        in_len = len(self.in_products)
+        for k in range(in_len):
+            user_req = self.in_products[k]
+            if user_req.pid == pid:
+                self.in_products.remove(user_req)
+                return True
+        return False
+
 
     def search(self):
         # Iterate through user's shopping basket and search for offers
@@ -141,10 +158,12 @@ class ProductList:
                 out_list.append(p)
         return out_list
 
+
 class UserRequirements:
 
-    def __init__(self, name, count=DEFAULT_COUNT, min_price=DEFAULT_MIN_PRICE, max_price=DEFAULT_MAX_PRICE,
+    def __init__(self, pid, name, count=DEFAULT_COUNT, min_price=DEFAULT_MIN_PRICE, max_price=DEFAULT_MAX_PRICE,
                            min_rating=DEFAULT_RATING, nrates=DEFAULT_MIN_NRATES):
+        self.pid = pid
         self.name = name
         self.count = count
         self.min_price = min_price
@@ -152,7 +171,6 @@ class UserRequirements:
         self.min_rating = min_rating
         self.nrates = nrates
         self.found_products = []
-
 
 
 class AlgorithmHandler:
