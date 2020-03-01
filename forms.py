@@ -36,9 +36,9 @@ class ProductForm(FlaskForm):
     max_price = MyFloatField('Cena maksymalna (bez dostawy)', validators=[InputRequired(),
                                                                          NumberRange(min=0, message='Błędny format danych')])
     count = MyIntField('Ilość', validators=[InputRequired(),
-                                              NumberRange(min=0, message='Ilość produktów musi być dodatnia')])
+                                              NumberRange(min=1, message='Błędny format danych')])
     min_rating = SelectField('Minimalna ocena sprzedawcy', validators=[], choices=min_rep_choices, coerce=int)
-    nrates = MyIntField('Minimalna ilość opinii', validators=[InputRequired(), NumberRange(min=0, message='Ilość opinii nie może być ujemna')])
+    nrates = MyIntField('Minimalna ilość opinii', validators=[InputRequired(), NumberRange(min=0, message='Błędny format danych')])
     submit_add = SubmitField('Dodaj')
     submit_search = SubmitField('Wyszukaj')
 

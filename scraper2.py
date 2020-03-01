@@ -314,6 +314,9 @@ class SkapiecScraper:
         try:
             soup = BeautifulSoup(self.page, 'lxml')
             self.products_boxes = soup.find_all(class_=PRODUCT_CLASS)
+            if not self.products_boxes:
+                self.products_boxes = soup.find_all(class_="box-row js add-to-compare")
+
             logging.info('[load_products] found %s products', len(self.products_boxes))
 
         except Exception as e:
@@ -457,6 +460,7 @@ class Product:
         self.total_min_price = self.price + min(self.delivery_costs)
         self.total_max_price = self.price + max(self.delivery_costs)
         self.in_id = None
+        self.count = 0
 
     def __str__(self):
         pid = '{:<12}  {:<12}\n'.format("Name: ", self.pid)

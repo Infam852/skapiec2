@@ -1,0 +1,8 @@
+# pip3 install -r requirements.txt
+
+flask
+Flask-WTF
+wtforms
+bs4
+beautifulsoup4
+lxml

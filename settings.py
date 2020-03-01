@@ -17,8 +17,8 @@ MAX_PAGES = 3
 RETURNED_SETS = 3
 
 #
-MAX_STORES = 8
-MAX_OFFERS = 6
+MAX_STORES = 10
+MAX_OFFERS = 5
 
 # default search parameters
 DEFAULT_COUNT = 1

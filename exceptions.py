@@ -24,3 +24,7 @@ class OutOfBoundException(Error):
 
 class NoProductsOverview(Error):
     pass
+
+
+class UniqueIdException(Error):
+    pass

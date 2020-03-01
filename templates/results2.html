@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="ml-auto mr-2 border-bottom mb-2">
+        <div class="row mb-2 ml-3">
+            <a class="btn btn-secondary" href="{{ url_for('home') }}" role="button">Wróć</a>
+            <a class="btn btn-success ml-2" href="{{ url_for('new_search') }}" role="button">Wyszukaj ponownie</a>
+        </div>
+
+    </div>
+    {% for products_set in results %}
+    <div class="content-section mt-2">
+        <div>
+            <h4>Cena za zestaw: {{ "%.2f"|format(products_set.total_price) }} zł</h4>
+        </div>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+                <th scope="col">Nazwa</th>
+                <th scope="col">Ilość sztuk</th>
+                <th scope="col">Cena za sztukę</th>
+                <th scope="col">Cena z dostawą</th>
+                <th scope="col">Cena sumaryczna</th>
+                <th scope="col">Sklep</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for product in products_set.products %}
+            {% if product.pid == -100 %}
+            <tr>
+                <td colspan="6" class="text-center">Brak oferty</td>
+            </tr>
+            {% else %}
+<!--    onclick="window.location='{{ product.link }}';"        -->
+            <tr style="cursor: pointer;">
+                <div class="row">
+                    <td class="col-6">{{ product.name }}</td>
+                    <td class="col-1">{{ product.count }}</td>
+                    <td class="col-1">{{ "%.2f"|format(product.price) }}</td>
+                    <td class="col-1">{{ "%.2f"|format(product.total_min_price) }}</td>
+                    <td class="col-1">{{ "%.2f"|format(product.price * product.count + product.min_delivery)}}</td>
+                    <td class="col-2">
+                        <a target="_blank" rel="noopener noreferrer" href="{{ product.link }}">{{ product.shop_name }}</a>
+
+                    </td>
+                </div>
+            </tr>
+            {% endif %}
+          {% endfor %}
+          </tbody>
+        </table>
+    </div>
+    {% endfor %}
+{% endblock content %}

@@ -126,14 +126,13 @@
                     <div class="ml-auto">
                         <a class="btn btn-sm btn-danger" href="{{ url_for('delete_product', pid=product.pid) }}" role="button">Usuń</a>
                     </div>
-
                 </div>
-
             </div>
 
             <p class="mb-1">Zakres cen: {{ product.min_price }}-{{ product.max_price }} zł</p>
             <p class="mb-1">Ilość: {{ product.count }}</p>
             <p class="mb-1">Minimalna ocena: {{ product.min_rating }}</p>
+            <p class="mb-1">Ilość opinii: {{ product.nrates }}</p>
           </li>
         {% endfor %}
       </ul>
