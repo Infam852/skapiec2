@@ -20,6 +20,9 @@ W celu uruchomienia programu należy:
 ### Zasada działania
 Użytkownik wprowadza produkty do koszyka podając ich nazwę, zakres cen, ilość, minimalną reputację i minimalną ilość ocen sprzedawcy. Po wprowadzeniu produktów system rozpoczyna wyszukiwanie żądanych produktów. Następnie klient otrzymuje 3 zestawy produktów, które są uznane za "najlepsze" przez system.
 
+<img src="https://github.com/Infam852/skapiec2/blob/master/screens/screen1.PNG" data-canonical-src="https://github.com/Infam852/skapiec2/blob/master/screens/screen1.PNG" width="650" height="450" />
+<img src="https://github.com/Infam852/skapiec2/blob/master/screens/screen2.PNG" data-canonical-src="https://github.com/Infam852/skapiec2/blob/master/screens/screen1.PNG" width="650" height="450" />
+
 ### Ograniczenia
 * struktura strony Skąpiec.pl wymaga wielu zapytań HTTP w celu pobrania niezbędnych infomracji, co mocno wpływa na wydajnośc systemu
 * strona Skąpiec.pl nie umożliwia filtrowania produktów w podanym zakresie cen 
