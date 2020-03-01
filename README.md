@@ -14,7 +14,7 @@ Wyszukane informację przekazywane są do algorytmu, który zwraca 3 najlepsze z
 ### Instalacja
 W celu uruchomienia programu należy:
 * zainstalować potrzebne moduły (plik requirements.txt)
-* python main.py - powoduje uruchomienie lokalnego serwera na porcie 5000 
+* python routes2.py - powoduje uruchomienie lokalnego serwera na porcie 5000 
 * w przeglądarce "localhost:5000"
 
 ### Zasada działania
